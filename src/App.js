@@ -8,6 +8,7 @@ import {
 import "antd/dist/antd.css";
 import "./App.css";
 
+import Program from "./programs";
 const { Header, Sider, Content, Footer } = Layout;
 const { Text, Paragraph } = Typography;
 
@@ -41,8 +42,14 @@ function App() {
         >
           This is where the time table sits
         </Content>
-        <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
-          This is where the degree explorer sits
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          theme="light"
+          width={350}
+        >
+          {collapsed ? <div>{"Collapsed "}</div> : <div>{<Program />}</div>}
         </Sider>
       </Layout>
       <Footer style={{ textAlign: "center" }}>
