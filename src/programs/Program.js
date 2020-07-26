@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import { Input, Card } from "antd";
 
@@ -18,7 +19,6 @@ const tabList = [
   },
 ];
 
-const takenCourse = ["ECE 1000", "ECE 1200", "ECE 1300"];
 const testData = [
   {
     Department: "TEST",
@@ -99,6 +99,7 @@ const testData = [
 const Program = ({}) => {
   const [curTab, setCurTab] = useState({ t: "tab1" });
   const [displayedProgram, setDisplayedProgram] = useState(0);
+
   const contentList = {
     tab1: (
       <AllPrograms
@@ -129,4 +130,8 @@ const Program = ({}) => {
   );
 };
 
-export default Program;
+const mapState = (state) => {
+  return { selectedCourses: state.selectedCourses };
+};
+
+export default connect(mapState)(Program);

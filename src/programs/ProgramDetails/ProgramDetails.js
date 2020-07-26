@@ -37,7 +37,7 @@ const ProgramDetails = ({ program }) => {
         >{`credit : ${program.CreditFullfilled}/${program.CoursesRequired}`}</span>
       </div>
 
-      <Collapse defaultActiveKey={["1"]}>{requirementsCard}</Collapse>
+      <Collapse defaultActiveKey={["0"]}>{requirementsCard}</Collapse>
     </div>
   );
 };
