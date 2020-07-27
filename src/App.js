@@ -4,9 +4,9 @@ import { GithubOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "./App.css";
 import { Provider } from "react-redux";
-import { sotre } from "./redux/store";
+import store from "./redux/store";
 
-import Program from "./programs";
+import ConnectedProgram from "./programs";
 const { Header, Sider, Content, Footer } = Layout;
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div>
-      <Provider store={sotre}>
+      <Provider store={store}>
         <Layout style={{ height: "100vh" }}>
           <Header style={{ color: "#fff" }}>
             <Row>
@@ -48,7 +48,11 @@ function App() {
               theme="light"
               width={350}
             >
-              {collapsed ? <div>{"Collapsed "}</div> : <div>{<Program />}</div>}
+              {collapsed ? (
+                <div>{"Collapsed "}</div>
+              ) : (
+                <div>{<ConnectedProgram />}</div>
+              )}
             </Sider>
           </Layout>
           <Footer style={{ textAlign: "center" }}>

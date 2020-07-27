@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { userActions } from "./actions";
+import { userActions } from "./action";
 
 // All selected courses, detail of courses are stored in Course component
 const initState = { selectedCourses: ["ECE1774H"] }; // test data
@@ -17,6 +17,8 @@ function courseReducer(state = initState, action) {
         }
       }, []);
       return { selectedCourses: courses };
+    default:
+      return initState;
   }
 }
 

@@ -4,6 +4,7 @@ import { Collapse } from "antd";
 const { Panel } = Collapse;
 
 const ProgramDetails = ({ program }) => {
+  if (!program) return <div>No courses selected yet </div>;
   const programTitleStyle = { float: "left", fontWeight: 700 };
   const creditStyle = { float: "right" };
   const titleStyle = { fontWeight: 700 };

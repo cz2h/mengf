@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "antd";
 
 const AllPrograms = ({ programs, onClick }) => {
   const cardStyle = { marginTop: "16px", width: "90%", cursor: "pointer" };
   const programNameStyle = { fontSize: "16px", fontWeight: 700 };
-  const myPrograms = programs.map((program, index) => {
-    return (
-      // will be replaced in later days
+
+  let myPrograms = [];
+  for (const programName in programs) {
+    let program = programs[programName];
+    myPrograms = myPrograms.concat(
       <Card.Grid
-        key={index}
-        onClick={(e) => onClick(index)}
+        key={programName}
+        onClick={(e) => {
+          //   console.log(e);
+          onClick(programName);
+        }}
         style={cardStyle}
         hoverable={true}
       >
@@ -23,7 +28,8 @@ const AllPrograms = ({ programs, onClick }) => {
         </span>
       </Card.Grid>
     );
-  });
+  }
+
   return <div>{myPrograms}</div>;
 };
 export default AllPrograms;
