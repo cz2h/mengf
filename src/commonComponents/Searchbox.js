@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PopupBox from "./PopupBox";
 
 import axios from "axios";
 
@@ -18,12 +19,32 @@ function fetchData(apiEndPoint, param1, param2 = "", updateResult) {
     });
 }
 
-const Searchbox = ({ updateParentState, apiEndPoint }) => {
+const Searchbox = ({
+  updateParentState,
+  apiEndPoint,
+  searchItemOnClick, // spefiy on hover event for search results
+}) => {
   const searchPermitted = new RegExp("^((ECE)|(CSC)|(ece))_*.*$");
 
-  const [displayed, setdisplayed] = useState("");
+  const [displayed, setdisplayed] = useState(false);
   const [searchResult, setResult] = useState([]);
-
+  const popUpContent = searchResult.map((val, index) => {
+    return (
+      <div
+        key={index}
+        className="searchResult"
+        onClick={
+          searchItemOnClick
+            ? searchItemOnClick
+            : (val) => {
+                console.log(val);
+                updateParentState(searchResult[index]);
+                setdisplayed(false);
+              }
+        }
+      >{`${val.Department} ${val.Program}`}</div>
+    );
+  });
   return (
     <div>
       <Search
@@ -34,10 +55,16 @@ const Searchbox = ({ updateParentState, apiEndPoint }) => {
           }
           let [param1, param2] = userInput.split(/_+/);
           fetchData(apiEndPoint, param1, param2, setResult);
-          setdisplayed(userInput);
+          setdisplayed(true);
         }}
+        onClick={() => setdisplayed(true)}
       />
-      <Select
+      <PopupBox
+        content={popUpContent}
+        display={displayed}
+        setDisplay={setdisplayed}
+      />
+      {/* <Select
         showSearch
         value={displayed}
         style={{ width: "80%", maxHeight: "0%" }}
@@ -61,7 +88,7 @@ const Searchbox = ({ updateParentState, apiEndPoint }) => {
           console.log("options updated");
           return <Option key={i}>{`${p.Department} ${p.Program}`}</Option>;
         })}
-      </Select>
+      </Select> */}
     </div>
   );
 };
