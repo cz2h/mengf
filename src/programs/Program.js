@@ -18,83 +18,6 @@ const tabList = [
   },
 ];
 
-// const selectedProgram = [
-//   {
-//     Department: "TEST",
-//     Program: "MENG 1",
-//     CoursesRequired: 4,
-//     CreditFullfilled: 3,
-//     completed: true,
-//     OtherRequirements: [
-//       {
-//         Title: "Test Title",
-//         Category: "^ECE5\\d{2}$",
-//         limitation: "2 -",
-//         Description: "You can have at most 2 500 level ECE courses.",
-//         progress: {
-//           completed: false,
-//           usedCourses: (
-//             <div>
-//               <span>ECE 500</span> <span>ECE 501</span> <span>ECE 502</span>
-//             </div>
-//           ),
-//         },
-//       },
-//     ],
-//   },
-//   {
-//     Department: "TEST",
-//     Program: "MENG 2",
-//     CoursesRequired: 9,
-//     CreditFullfilled: 5,
-//     completed: false,
-//     OtherRequirements: [
-//       {
-//         Title: "Test Title",
-//         Category: "^ECE5\\d{2}$",
-//         limitation: "2 -",
-//         Description: "You can have at most 2 500 level ECE courses.",
-//         progress: {
-//           completed: false,
-//           usedCourses: (
-//             <div>
-//               <span>ECE 500</span> <span>ECE 501</span> <span>ECE 502</span>
-//             </div>
-//           ),
-//         },
-//       },
-//       {
-//         Title: "Test Title 2",
-//         Category: "^ECE5(5\\d{2}|1\\d{3})$",
-//         limitation: "5 +",
-//         Description: "You need to have at least 5 ECE courses.",
-//         progress: {
-//           completed: false,
-//           usedCourses: (
-//             <div>
-//               <span>ECE 500</span> <span>ECE 501</span> <span>ECE 502</span>
-//             </div>
-//           ),
-//         },
-//       },
-//       {
-//         Title: "Test Title 3",
-//         Category: "^(ECE)|(CSC)\\d{3, 4}$",
-//         limitation: "6 +",
-//         Description: "You need to have at least 6 technical courses.",
-//         progress: {
-//           completed: false,
-//           usedCourses: (
-//             <div>
-//               <span>ECE 500</span> <span>ECE 501</span> <span>ECE 502</span>
-//             </div>
-//           ),
-//         },
-//       },
-//     ],
-//   },
-// ];
-
 const Program = (props) => {
   // UI state
   const [curTab, setCurTab] = useState({ t: "tab1" });
@@ -107,9 +30,15 @@ const Program = (props) => {
       // TODO : ADD DELETE
       <AllPrograms
         programs={selectedPrograms}
-        onClick={(index) => {
-          setDisplayedProgram(index);
+        onClick={(name) => {
+          setDisplayedProgram(name);
           setCurTab({ t: "tab2" });
+        }}
+        onDelete={(name) => {
+          console.log(name);
+          let { [name]: content, ...rest } = selectedPrograms;
+          setSelectedProgram(rest);
+          console.log(selectedPrograms);
         }}
       />
     ),

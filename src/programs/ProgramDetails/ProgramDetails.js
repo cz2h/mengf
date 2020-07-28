@@ -31,14 +31,9 @@ const ProgramDetails = ({ program }) => {
 
   return (
     <div>
-      <div style={titleStyle}>
-        {`${program.Department} ${program.Program}`}
-        <span
-          style={{ float: "right" }}
-        >{`credit : ${program.CreditFullfilled}/${program.CoursesRequired}`}</span>
-      </div>
+      <div style={titleStyle}>{`${program.Department} ${program.Program}`}</div>
 
-      <Collapse defaultActiveKey={["0"]}>{requirementsCard}</Collapse>
+      <Collapse>{requirementsCard}</Collapse>
     </div>
   );
 };
