@@ -1,0 +1,19 @@
+.background-row {
+  position: relative;
+}
+
+.cellBox {
+  position: relative;
+  float: left;
+}
+
+.course-grid {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.course-grid:hover {
+  border: 2px solid black;
+}

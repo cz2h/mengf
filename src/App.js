@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 import ConnectedProgram from "./programs";
+import Calanedar from "./calendar";
 const { Header, Sider, Content, Footer } = Layout;
 
 function App() {
@@ -34,12 +35,11 @@ function App() {
             <Content
               className="site-layout-background"
               style={{
-                margin: "24px 16px",
                 padding: 24,
                 minHeight: 280,
               }}
             >
-              This is where the time table sits
+              <Calanedar />
             </Content>
             <Sider
               trigger={null}
@@ -48,11 +48,7 @@ function App() {
               theme="light"
               width={350}
             >
-              {collapsed ? (
-                <div>{"Collapsed "}</div>
-              ) : (
-                <div>{<ConnectedProgram />}</div>
-              )}
+              {collapsed ? "" : <div>{<ConnectedProgram />}</div>}
             </Sider>
           </Layout>
           <Footer style={{ textAlign: "center" }}>
