@@ -8,6 +8,7 @@ import store from "./redux/store";
 
 import ConnectedProgram from "./programs";
 import Calanedar from "./calendar";
+import Course from "./courses";
 const { Header, Sider, Content, Footer } = Layout;
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
           <Layout>
             <Sider trigger={null} theme="light">
               <div className="logo" />
-              This is the courses component
+              <Course />
             </Sider>
             <Content
               className="site-layout-background"

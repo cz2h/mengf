@@ -1,0 +1,9 @@
+.coursedetail-container {
+  cursor: pointer;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.coursedetail-container:hover {
+  border: 2px solid black;
+}

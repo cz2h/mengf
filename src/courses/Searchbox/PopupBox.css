@@ -1,0 +1,22 @@
+.popUpContents {
+  margin-top: 2px;
+  z-index: 5;
+  position: relative;
+  width: "100px";
+  overflow: auto;
+}
+
+.popUpContents * {
+  z-index: 5;
+  position: relative;
+}
+
+.searchResult {
+  border: 1px solid;
+  background-color: transparent;
+  animation: all 0.8s;
+}
+
+.searchResult:hover {
+  background-color: darkgray;
+}

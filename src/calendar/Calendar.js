@@ -87,6 +87,7 @@ const Calanedar = ({ schedule = sample }) => {
         let divWidth = (1 / numProcessor) * 100;
         let courseDiv = (
           <div
+            key={`${index + course.start + course.key}`}
             className="course-grid"
             style={{
               left: `${index * divWidth}%`,
@@ -106,12 +107,13 @@ const Calanedar = ({ schedule = sample }) => {
 
     courseGrids.push(
       <div
+        key={`divwrapper${day}`}
         className="day-container"
         style={{
           position: "absolute",
           left: `${dayToLength[day] * cellWidth}%`,
-          top: `${lineHeight}%`,
-          height: `${lineHeight * timeSlots}%`,
+          top: `0`,
+          height: `100%`,
           width: `${0.97 * cellWidth}%`,
         }}
       >
@@ -122,13 +124,13 @@ const Calanedar = ({ schedule = sample }) => {
 
   // Calendar with time line at the back
   const background = [
-    <div className="background-row" style={rowStyle}>
+    <div className="background-row" key={"row0"} style={rowStyle}>
       <div className="cellBox" style={cellStyle}>
         <p>Fall</p>
       </div>
-      {days.map((day) => {
+      {days.map((day, i) => {
         return (
-          <div className="cellBox" style={cellStyle}>
+          <div className="cellBox" key={`${day + i}`} style={cellStyle}>
             <p>{day}</p>
           </div>
         );
@@ -137,13 +139,15 @@ const Calanedar = ({ schedule = sample }) => {
   ];
   for (let i = 0; i < timeSlots; i++) {
     background.push(
-      <div className="background-row" style={rowStyle}>{`${8 + i}:00`}</div>
+      <div className="background-row" key={`${i}`} style={rowStyle}>{`${
+        8 + i
+      }:00`}</div>
     );
   }
 
   return (
     <div
-      class="calendar-container"
+      className="calendar-container"
       style={{ height: "95%", width: "100%", position: "relative" }}
     >
       {background}
