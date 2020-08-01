@@ -4,9 +4,8 @@ import { Collapse } from "antd";
 const { Panel } = Collapse;
 
 const ProgramDetails = ({ program }) => {
+  console.log("ProgramDetail updaed, ", program);
   if (!program) return <div>No courses selected yet </div>;
-  const programTitleStyle = { float: "left", fontWeight: 700 };
-  const creditStyle = { float: "right" };
   const titleStyle = { fontWeight: 700 };
 
   const requirementsCard = program.OtherRequirements.map(
@@ -23,7 +22,15 @@ const ProgramDetails = ({ program }) => {
           <h3> Description: </h3>
           <p>{requirement.Description}</p>
           <h3>Matched Courses</h3>
-          <div>{requirement.progress.usedCourses}</div>
+          <div>
+            {requirement.progress.usedCourses.map((v, i) => {
+              return (
+                <span style={{ margin: "4px" }} key={i}>
+                  {v}
+                </span>
+              );
+            })}
+          </div>
         </Panel>
       );
     }

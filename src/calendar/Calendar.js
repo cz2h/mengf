@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import { actions } from "../redux/action";
+
 // import animation effect.
 import "./Calendar.css";
 
@@ -9,51 +11,11 @@ const { getNumProcessor } = require("../asset/scheduler");
 // Constants for table headers
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const dayToLength = {
-  Monday: 1,
-  Tuesday: 2,
-  Wednesday: 3,
-  Thursday: 4,
-  Friday: 5,
-};
-
-// Test sample data
-const sample = {
-  Monday: [
-    {
-      key: "2",
-      start: "10",
-      end: "12",
-    },
-    {
-      key: "1",
-      start: "9",
-      end: "13",
-    },
-
-    {
-      key: "4",
-      start: "12",
-      end: "13",
-    },
-    {
-      key: "3",
-      start: "15",
-      end: "17",
-    },
-  ],
-  Tuesday: [
-    {
-      key: "2",
-      start: "10",
-      end: "12",
-    },
-    {
-      key: "1",
-      start: "9",
-      end: "13",
-    },
-  ],
-  Wednesday: [],
+  Mon: 1,
+  Tue: 2,
+  Wed: 3,
+  Thu: 4,
+  FrI: 5,
 };
 
 // Constants related to course-div length
@@ -73,11 +35,12 @@ const rowStyle = {
   borderBottom: "1px solid grey",
 };
 
-const Calanedar = ({ schedule = sample }) => {
+const Calanedar = (props) => {
   // Dynamically generated grids representating selected courses
+  let myschedue = props.schedule;
   let courseGrids = [];
-  for (let day in schedule) {
-    let courseAtDay = schedule[day];
+  for (let day in myschedue) {
+    let courseAtDay = myschedue[day];
     let processors = getNumProcessor(courseAtDay); // number of courses
     let numProcessor = processors.length;
 
@@ -96,6 +59,11 @@ const Calanedar = ({ schedule = sample }) => {
                 (Number(course.end) - Number(course.start)) * lineHeight
               }%`,
               width: `${divWidth}%`,
+              overflow: "hidden",
+            }}
+            onClick={(e) => {
+              let [code] = course.key.split(" ");
+              props.setDisplayed(`${code}F`);
             }}
           >
             {course.key}
@@ -156,4 +124,14 @@ const Calanedar = ({ schedule = sample }) => {
   );
 };
 
-export default Calanedar;
+// Redux related
+const actionCreator = {
+  setDisplayed: actions.setDisplayed,
+};
+
+const mapState = (state) => {
+  // Use fall's calendar for simplification
+  return { schedule: state.courseReducer.fallCalendar };
+};
+
+export default connect(mapState, actionCreator)(Calanedar);

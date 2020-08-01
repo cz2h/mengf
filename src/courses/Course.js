@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 
-import { Card } from "antd";
+import { connect } from "react-redux";
+import { actions } from "../redux/action";
 
 import Searchbox from "./Searchbox/Searchbox";
 import CourseDetail from "./CourseDetail/CourseDetail";
 import { API } from "../endPoint";
 
-const Course = () => {
-  const [searchResults, setSearchResults] = useState([]);
-  const [curDisplayedDetail, setCurDisplayedCourse] = useState(null);
-  const [selectedCourses, setSelectedCourse] = useState({});
-
+const Course = (props) => {
+  // Open the detail box or not.
+  const [openDetailBoxOrNot, openDetailBox] = useState(false);
+  // {code:detail}, used for fetching course details locally.
+  const [courseBuffer, setCourseBuffer] = useState({});
   return (
     <div
       className="course-container"
@@ -18,25 +19,55 @@ const Course = () => {
     >
       <h3 className="course-container-title">My Courses</h3>
       <Searchbox
-        addCourseToMySchedule={([course]) => {
-          setCurDisplayedCourse(course);
-          setSelectedCourse({
-            ...setSelectedCourse,
-            [`${course.CourseCode}${course.Session}`]: course,
+        addCourseToMySchedule={([courseDetail]) => {
+          // Convert string fields into objects
+          courseDetail.Days = JSON.parse(courseDetail.Days);
+          // Add course detail to buffer
+          setCourseBuffer({
+            ...courseBuffer,
+            [`${courseDetail.CourseCode}${courseDetail.Session}`]: courseDetail,
           });
+          // and then display the detail box
+          props.setDisplayed(
+            `${courseDetail.CourseCode}${courseDetail.Session}`
+          );
+          openDetailBox(true);
         }}
         CoursesMatchedListAPI={`${API}/courses/list`}
         CourseDetailAPI={`${API}/courses/detail`}
       />
       <div>Selected List of Courses</div>
-      <CourseDetail
-        courseInfo={curDisplayedDetail}
-        setDisplayedCourse={(value) => {
-          setCurDisplayedCourse(value);
-        }}
-      />
+      {props.curDisplay !== "" ? (
+        <CourseDetail
+          curCourseCode={props.curDisplay}
+          courseInfo={courseBuffer[props.curDisplay]}
+          addSectionToSchedule={(code, semester, detail) => {
+            props.addCourse(code, semester, detail);
+          }}
+          deleteSectionToSchedule={(code, semester, detail) => {
+            props.deleteCourse(code, semester, detail);
+          }}
+          mySelectedCourses={props.selectedCourses}
+          closeCurDisplayed={() => props.setDisplayed("")}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
 
-export default Course;
+const actionsCreator = {
+  setDisplayed: actions.setDisplayed,
+  addCourse: actions.addCourse,
+  deleteCourse: actions.deleteCourse,
+};
+
+const mapState = (state) => {
+  return {
+    selectedCourses: state.courseReducer.selectedCourses,
+    curDisplay: state.courseReducer.curDisplay,
+  };
+};
+
+export default connect(mapState, actionsCreator)(Course);

@@ -29,7 +29,6 @@ const Searchbox = ({ updateParentState, apiEndPoint }) => {
         key={index}
         className="searchResult"
         onClick={(val) => {
-          console.log(val);
           updateParentState(searchResult[index]);
           setdisplayed(false);
         }}

@@ -20,7 +20,6 @@ const PopupBox = ({ content, display, setDisplay }) => {
               width: "100vw",
             }}
             onClick={(e) => {
-              console.log("CLICK TO HIDE SEARCH POPUP");
               setDisplay(!display);
             }}
           ></div>

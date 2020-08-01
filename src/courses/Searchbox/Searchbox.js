@@ -13,7 +13,6 @@ function fetchData(apiEndPoint, param1, param2 = "", updateResult) {
   axios
     .get(endPoint)
     .then((res) => {
-      console.log(res);
       updateResult(res.data.Items);
     })
     .catch((err) => {
