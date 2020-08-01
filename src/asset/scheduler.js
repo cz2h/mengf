@@ -31,10 +31,14 @@ function hasConflict(c1, c2) {
 /**
  Given all courses at a given date, get the number of processors(number of conflicts)
  and return all processors containing courses.
- @param {Array} courses: list of {key, start, end} 
+ @param {} courses: list of {key: {start, end}} 
  @returns : [[{course}]...]
  */
-export function getNumProcessor(courses) {
+export function getNumProcessor(coursesObj) {
+  let courses = [];
+  for (let k in coursesObj) {
+    courses.push(coursesObj[k]);
+  }
   courses.sort((k1, k2) => {
     let s1 = Number(k1.start);
     let s2 = Number(k2.start);
