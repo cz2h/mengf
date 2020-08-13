@@ -5,16 +5,16 @@
 
 
 # intro
-### What is this?
+#### What is this?
 This is an app is designed for 
 **scheduling courses**, **checking conflicts** and **checking progress** of specific program. (especially for grad students!)
 
 This repo contains code for the front-end of the web. Basic [react](https://reactjs.org/) and [redux](https://redux.js.org/) skill are required.
 
-### Overview
+#### Overview
 link to overview picture
 
-### Getting started
+#### Getting started
 1. Clone this repo
 2. `npm install` then `npm start`
 
@@ -22,8 +22,8 @@ link to overview picture
 See https://github.com/zengchu2/mengManager
 
 # structure
-overview
-calendar
-coruses
-programs
+#### overview
+#### calendar
+#### coruses
+#### programs
 
