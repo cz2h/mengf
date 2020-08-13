@@ -12,8 +12,7 @@ This is an app is designed for
 This repo contains code for the front-end of the web. Basic [react](https://reactjs.org/) and [redux](https://redux.js.org/) skill are required.
 
 #### Overview
-link to overview picture
-
+![Image of Demo](https://github.com/zengchu2/mengf/tree/master/public/doc/detail.png)
 #### Getting started
 1. Clone this repo
 2. `npm install` then `npm start`
@@ -23,7 +22,14 @@ See https://github.com/zengchu2/mengManager
 
 # structure
 #### overview
+
 #### calendar
+![Image of Demo](https://github.com/zengchu2/mengf/tree/master/public/doc/calendar.png)
+
 #### coruses
+![Image of Demo](https://github.com/zengchu2/mengf/tree/master/public/doc/courses.png)
+
 #### programs
+![Image of Demo](https://github.com/zengchu2/mengf/tree/master/public/doc/programs.png)
+
 
