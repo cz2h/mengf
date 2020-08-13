@@ -28,7 +28,7 @@ See https://github.com/zengchu2/mengManager
 ![Image of Demo](https://raw.githubusercontent.com/zengchu2/mengf/master/public/doc/calendar.png)
 
 #### coruses
-![Image of Demo](hhttps://raw.githubusercontent.com/zengchu2/mengf/master/public/doc/courses.png)
+![Image of Demo](https://raw.githubusercontent.com/zengchu2/mengf/master/public/doc/courses.png)
 
 #### programs
 ![Image of Demo](https://raw.githubusercontent.com/zengchu2/mengf/master/public/doc/programs.png)
