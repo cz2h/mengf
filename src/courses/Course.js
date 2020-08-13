@@ -9,7 +9,6 @@ import { API } from "../endPoint";
 
 const Course = (props) => {
   // Open the detail box or not.
-  const [openDetailBoxOrNot, openDetailBox] = useState(false);
   // {code:detail}, used for fetching course details locally.
   const [courseBuffer, setCourseBuffer] = useState({});
   return (
@@ -19,7 +18,7 @@ const Course = (props) => {
     >
       <h3 className="course-container-title">My Courses</h3>
       <Searchbox
-        addCourseToMySchedule={([courseDetail]) => {
+        clickToSeeCourseDetail={([courseDetail]) => {
           // Convert string fields into objects
           courseDetail.Days = JSON.parse(courseDetail.Days);
           // Add course detail to buffer

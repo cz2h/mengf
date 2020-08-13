@@ -21,7 +21,7 @@ function fetchData(apiEndPoint, param1, param2 = "", updateResult) {
 }
 
 const Searchbox = ({
-  addCourseToMySchedule,
+  clickToSeeCourseDetail,
   CoursesMatchedListAPI,
   CourseDetailAPI,
 }) => {
@@ -40,7 +40,7 @@ const Searchbox = ({
         onClick={(e) => {
           //lower case id
           fetchData(CourseDetailAPI, val.id, "", (courseDetail) => {
-            addCourseToMySchedule(courseDetail);
+            clickToSeeCourseDetail(courseDetail);
           });
           // and then update the result
         }}
